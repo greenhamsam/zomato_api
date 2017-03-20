@@ -1,9 +1,5 @@
 import requests
-import csv
-import json
 import pandas as pd
-import numpy as np
-import difflib
 
 ## Load RestaurantMasterData into pandas
 restaurant_list = pd.read_csv('RestaurantMasterData.csv', sep=None, engine='python')
@@ -19,10 +15,15 @@ jozi = pd.read_json('johannesburg_flat.json')
 
 # Match to names in the original restuarant list
 capetown_matches = pd.merge(restaurant_list, capetown, on='name', how='inner')
-print(capetown_matches)
 durban_matches = pd.merge(restaurant_list, durban, on='name', how='inner')
-print(durban_matches)
 jozi_matches = pd.merge(restaurant_list, jozi, on='name', how='inner')
+
+print("Number of Cape Town matches: " + str(len(capetown_matches)))
+print("Number of Durban matches: " + str(len(durban_matches)))
+print("Number of Jozi matches: " + str(len(jozi_matches)))
+
+print(capetown_matches)
+print(durban_matches)
 print(jozi_matches)
 
 ## Search the Zomato API for a specific restaurant
